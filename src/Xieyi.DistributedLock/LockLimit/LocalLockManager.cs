@@ -3,7 +3,7 @@ using Xieyi.DistributedLock.Exceptions;
 
 namespace Xieyi.DistributedLock.LockLimit
 {
-    internal class LocalLockManager
+    public class LocalLockManager
     {
         private readonly ConcurrentDictionary<string, LockEntry> _lockEntries;
 
@@ -14,12 +14,12 @@ namespace Xieyi.DistributedLock.LockLimit
 
         public static LocalLockManager Instance { get; } = new LocalLockManager();
 
-        internal void Lock(string name)
+        public void Lock(string name)
         {
             GetLockEntry(name).Enter();
         }
 
-        internal bool TryLock(string name, int waitTime)
+        public bool TryLock(string name, int waitTime)
         {
             if (waitTime <= 0)
             {
@@ -56,7 +56,7 @@ namespace Xieyi.DistributedLock.LockLimit
             }
         }
 
-        internal void Unlock(string name)
+        public void Unlock(string name)
         {
             if (!(_lockEntries.TryGetValue(name, out var entry) && entry.IsEntered()))
             {
