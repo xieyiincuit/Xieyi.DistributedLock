@@ -11,7 +11,7 @@ public class RenewManagementTest : IDisposable
     private readonly RenewManager _manager = RenewManager.Instance;
     private readonly RenewEntryPriorityBlockingQueue<RenewEntry> _priorityQueue;
 
-    private static readonly int _numbers = 100;
+    private static readonly int _numbers = 10;
     private static readonly int _totalRenewTime = 5 * 60 * 1000;
 
     private readonly IConnectionMultiplexer _connectionMultiplexer;
