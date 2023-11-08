@@ -1,6 +1,6 @@
 ﻿namespace Xieyi.DistributedLock.Renew
 {
-    internal class RenewEntryPriorityBlockingQueue<T> where T : RenewEntry
+    public class RenewEntryPriorityBlockingQueue<T> where T : RenewEntry
     {
         private int _capacity;
         private int _size;
@@ -8,14 +8,14 @@
 
         private readonly object _locker = new object();
 
-        internal RenewEntryPriorityBlockingQueue()
+        public RenewEntryPriorityBlockingQueue()
         {
             _capacity = 10;
             _size = 0;
             _heap = new T[_capacity + 1];
         }
 
-        internal void Offer(T item)
+        public void Offer(T item)
         {
             Monitor.Enter(_locker);
             GrowIfNecessary();
@@ -31,7 +31,7 @@
             }
         }
 
-        internal T Poll()
+        public T Poll()
         {
             Monitor.Enter(_locker);
 

@@ -1,6 +1,6 @@
 namespace Xieyi.DistributedLock.Renew
 {
-    internal sealed class RenewManager
+    public sealed class RenewManager
     {
         private readonly RenewEntryPriorityBlockingQueue<RenewEntry> _priorityQueue;
         private RenewThread[] _threads;
