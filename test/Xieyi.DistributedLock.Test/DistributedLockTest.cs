@@ -177,13 +177,13 @@ public class DistributedLockTest : IDisposable
     {
         var factory = TestHelper.GetRedisConnectionFactory(TestHelper.RemoveRedisKeyFormatServer);
         var distributedLock = new DistributedLock(_lockKey, factory);
-        distributedLock.Lock();
+        distributedLock.Lock(TimeSpan.FromSeconds(10));
         Assert.False(distributedLock.RenewFailed());
 
         _redis.KeyDelete(_lockKey);
 
         //wait renew thread to handle this
-        Thread.Sleep(10000);
+        Thread.Sleep(5000);
 
         Assert.True(distributedLock.RenewFailed());
         distributedLock.Unlock();

@@ -3,7 +3,7 @@ namespace Xieyi.DistributedLock.Interfaces
     /// <summary>
     /// OperationLock with Redis Connection
     /// </summary>
-    public interface IDistributedLockFactory
+    public interface IDistributedLockFactory : IDisposable
     {
         long CreateLock(string key, string field, TimeSpan expiryTime);
 
