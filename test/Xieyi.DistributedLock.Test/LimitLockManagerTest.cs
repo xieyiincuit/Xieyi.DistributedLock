@@ -11,6 +11,7 @@ public class LimitLockManagerTest
     private readonly ConcurrentDictionary<string, LockEntry> _lockEntries;
 
     private static readonly string _localLockName = Guid.NewGuid().ToString();
+    private static readonly string _localLockName2 = Guid.NewGuid().ToString();
 
     public LimitLockManagerTest()
     {
@@ -72,6 +73,24 @@ public class LimitLockManagerTest
         Assert.True(time >= occupiedTime - 500);
 
         _lockEntryManager.Unlock(_localLockName);
+    }
+    
+    [Fact]
+    public void Lock_MultiThread_DifferentLock()
+    {
+        const int occupiedTime = 5000;
+        EntryOccupiedInMilliTime(occupiedTime, _localLockName);
+        
+        //make sure the thread hold the lock
+        Thread.Sleep(100);
+
+        var stopwatch = Stopwatch.StartNew();
+        _lockEntryManager.Lock(_localLockName2);
+        
+        var time = stopwatch.ElapsedMilliseconds;
+        Assert.True(time < occupiedTime - 200);
+
+        _lockEntryManager.Unlock(_localLockName2);
     }
     
     [Fact]
