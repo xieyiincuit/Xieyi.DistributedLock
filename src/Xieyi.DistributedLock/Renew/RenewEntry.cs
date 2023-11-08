@@ -3,7 +3,7 @@ using Xieyi.DistributedLock.LockLimit;
 
 namespace Xieyi.DistributedLock.Renew
 {
-    internal class RenewEntry : RefCounted, IComparable
+    public class RenewEntry : RefCounted, IComparable
     {
         private readonly LockBase _lockBase;
         private readonly int _threadId;
@@ -11,7 +11,7 @@ namespace Xieyi.DistributedLock.Renew
         private DateTime _nextRenewTime;
         private readonly CancellationTokenSource _cancellationTokenSource;
 
-        internal RenewEntry(LockBase lockBase, TimeSpan leaseTime, long pttl) : base(lockBase.EntryName)
+        public RenewEntry(LockBase lockBase, TimeSpan leaseTime, long pttl) : base(lockBase.EntryName)
         {
             _lockBase = lockBase;
 
@@ -36,19 +36,19 @@ namespace Xieyi.DistributedLock.Renew
 
         internal bool IsRenewFailed => _cancellationTokenSource.IsCancellationRequested;
 
-        internal int TimeToRenew()
+        public int TimeToRenew()
         {
             return (int)(_nextRenewTime - DateTime.UtcNow).TotalMilliseconds;
         }
 
-        internal void UpdateRenewTime(long pttl)
+        public void UpdateRenewTime(long pttl)
         {
             _nextRenewTime = pttl > 0
                 ? DateTime.UtcNow.AddMilliseconds(pttl / 3)
                 : DateTime.UtcNow.AddMilliseconds(_leaseTime.TotalMilliseconds / 3);
         }
 
-        internal void NotifyRenewFailed()
+        public void NotifyRenewFailed()
         {
             _cancellationTokenSource.Cancel();
         }
