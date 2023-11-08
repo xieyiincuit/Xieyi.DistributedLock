@@ -16,7 +16,7 @@ namespace Xieyi.DistributedLock.Renew
 
         private void InitializeRenewThreads()
         {
-            _threads = new RenewThread[5];
+            _threads = new RenewThread[2];
             for (int i = 0; i < _threads.Length; i++)
             {
                 var thread = new RenewThread(_priorityQueue);

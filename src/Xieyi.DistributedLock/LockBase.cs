@@ -5,7 +5,7 @@ using Xieyi.DistributedLock.Renew;
 
 namespace Xieyi.DistributedLock
 {
-    internal abstract class LockBase : ILock
+    public abstract class LockBase : ILock
     {
         protected readonly IDistributedLockFactory _lockFactory;
         protected readonly string _lockName;
@@ -32,9 +32,9 @@ namespace Xieyi.DistributedLock
             _lockFactory = lockFactory;
         }
 
-        internal string LockName => _lockName;
-        internal string EntryName => _entryName;
-        internal string Id => _id;
+        public string LockName => _lockName;
+        public string EntryName => _entryName;
+        public string Id => _id;
         internal IDistributedLockFactory LockFactory => _lockFactory;
 
         public abstract void Lock();
@@ -84,8 +84,7 @@ namespace Xieyi.DistributedLock
             var success = _lockFactory.Unlock(_lockName, GetClientId());
             return success;
         }
-
-
+        
         public bool RenewFailed()
         {
             if (TryGetRenewEntry(out var renewEntry))

@@ -5,7 +5,7 @@ using Xieyi.DistributedLock.LockLimit;
 
 namespace Xieyi.DistributedLock
 {
-    internal class DistributedLock : LockBase
+    public class DistributedLock : LockBase
     {
         public DistributedLock(string lockName, IDistributedLockFactory lockFactory) : base(lockName, lockFactory)
         {
