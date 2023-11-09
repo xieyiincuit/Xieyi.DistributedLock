@@ -407,3 +407,4 @@ project.lock.json
 *.user
 *.userosscache
 *.sln.docstates
+*.idea
