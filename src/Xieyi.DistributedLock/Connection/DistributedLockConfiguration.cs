@@ -4,19 +4,19 @@ namespace Xieyi.DistributedLock.Connection
 {
     public class DistributedLockConfiguration
     {
-        public DistributedLockProvider Provider { get; set; }
+        public DistributedLockConnectionProvider ConnectionProvider { get; set; }
         public ILoggerFactory LoggerFactory { get; }
         public DistributedLockRetryConfiguration RetryConfiguration { get; init; }
 
         public DistributedLockConfiguration(DistributedLockEndPoint lockEndPoint, ILoggerFactory loggerFactory = null)
         {
-            this.Provider = new NativeDistributedLockProvider(loggerFactory) { LockEndPoint = lockEndPoint };
+            this.ConnectionProvider = new NativeDistributedLockConnectionProvider(loggerFactory) { LockEndPoint = lockEndPoint };
             this.LoggerFactory = loggerFactory;
         }
 
-        public DistributedLockConfiguration(DistributedLockProvider connectionProvider, ILoggerFactory loggerFactory = null)
+        public DistributedLockConfiguration(DistributedLockConnectionProvider connectionConnectionProvider, ILoggerFactory loggerFactory = null)
         {
-            this.Provider = connectionProvider ?? throw new ArgumentNullException(nameof(connectionProvider), "Connection provider must not be null");
+            this.ConnectionProvider = connectionConnectionProvider ?? throw new ArgumentNullException(nameof(connectionConnectionProvider), "Connection provider must not be null");
             this.LoggerFactory = loggerFactory;
         }
     }

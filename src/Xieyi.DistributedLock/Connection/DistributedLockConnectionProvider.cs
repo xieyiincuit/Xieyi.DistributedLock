@@ -1,6 +1,6 @@
 namespace Xieyi.DistributedLock.Connection
 {
-    public abstract class DistributedLockProvider
+    public abstract class DistributedLockConnectionProvider
     {
         internal abstract DistributedLockConnection CreateRedisConnection();
         internal abstract void DisposeConnection();

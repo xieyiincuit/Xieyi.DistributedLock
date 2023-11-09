@@ -7,7 +7,7 @@ namespace Xieyi.DistributedLock.Connection
     /// <summary>
     /// A connection provider that Create Redis Connection
     /// </summary>
-    internal class NativeDistributedLockProvider : DistributedLockProvider
+    internal class NativeDistributedLockConnectionProvider : DistributedLockConnectionProvider
     {
         private readonly ILoggerFactory loggerFactory;
 
@@ -19,7 +19,7 @@ namespace Xieyi.DistributedLock.Connection
         private const int DefaultSyncTimeout = 1000;
         private const int DefaultConfigCheckSeconds = 10;
 
-        public NativeDistributedLockProvider(ILoggerFactory loggerFactory = null)
+        public NativeDistributedLockConnectionProvider(ILoggerFactory loggerFactory = null)
         {
             this.loggerFactory = loggerFactory ?? new LoggerFactory();
             this.LockEndPoint = new DistributedLockEndPoint();
@@ -32,7 +32,7 @@ namespace Xieyi.DistributedLock.Connection
                 throw new ArgumentException("No endpoints specified");
             }
 
-            var logger = loggerFactory.CreateLogger<NativeDistributedLockProvider>();
+            var logger = loggerFactory.CreateLogger<NativeDistributedLockConnectionProvider>();
             
             var redisConfig = new ConfigurationOptions
             {

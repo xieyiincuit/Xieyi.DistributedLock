@@ -43,7 +43,7 @@ namespace Xieyi.DistributedLock
         public static DistributedLockFactory Create(DistributedLockMultiplexer existingMultiplexer, DistributedLockRetryConfiguration retryConfiguration, ILoggerFactory loggerFactory = null)
         {
             var configuration = new DistributedLockConfiguration(
-                new ExistDistributedLockProvider(existingMultiplexer),
+                new ExistDistributedLockConnectionProvider(existingMultiplexer),
                 loggerFactory)
             {
                 RetryConfiguration = retryConfiguration
@@ -55,7 +55,7 @@ namespace Xieyi.DistributedLock
         public DistributedLockFactory(DistributedLockConfiguration configuration)
         {
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration), "Configuration must not be null");
-            this.redis = configuration.Provider.CreateRedisConnection();
+            this.redis = configuration.ConnectionProvider.CreateRedisConnection();
             
             var loggerFactory = configuration.LoggerFactory ?? new LoggerFactory();
             this.logger = loggerFactory.CreateLogger<DistributedLockFactory>();
@@ -178,7 +178,7 @@ namespace Xieyi.DistributedLock
 
         public void Dispose()
         {
-            this.configuration.Provider.DisposeConnection();
+            this.configuration.ConnectionProvider.DisposeConnection();
         }
     }
 }

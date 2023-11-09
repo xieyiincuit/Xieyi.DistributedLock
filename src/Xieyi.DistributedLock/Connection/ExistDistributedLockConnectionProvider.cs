@@ -3,11 +3,11 @@ namespace Xieyi.DistributedLock.Connection
     /// <summary>
     /// A connection provider that uses existing Redis ConnectionMultiplexers
     /// </summary>
-    internal class ExistDistributedLockProvider : DistributedLockProvider
+    internal class ExistDistributedLockConnectionProvider : DistributedLockConnectionProvider
     {
         public DistributedLockMultiplexer ExistedMultiplexer { get; set; }
 
-        public ExistDistributedLockProvider(DistributedLockMultiplexer existedMultiplexer)
+        public ExistDistributedLockConnectionProvider(DistributedLockMultiplexer existedMultiplexer)
         {
             ExistedMultiplexer = existedMultiplexer;
         }
