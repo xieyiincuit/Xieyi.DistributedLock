@@ -3,7 +3,7 @@ using Xieyi.DistributedLock.Interfaces;
 
 namespace Xieyi.DistributedLock.LockLimit
 {
-    public abstract class RefCounted : IRefCount
+    internal abstract class RefCounted : IRefCount
     {
         private long _refCount = 1;
         public long RefCount => Interlocked.Read(ref _refCount);

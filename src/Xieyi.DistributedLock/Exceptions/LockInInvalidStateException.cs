@@ -1,6 +1,6 @@
 ﻿namespace Xieyi.DistributedLock.Exceptions
 {
-    public class LockInInvalidStateException : ApplicationException
+    internal class LockInInvalidStateException : ApplicationException
     {
         public LockInInvalidStateException(string message) : base(message)
         {

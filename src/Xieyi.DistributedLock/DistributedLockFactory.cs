@@ -43,7 +43,7 @@ namespace Xieyi.DistributedLock
         public static DistributedLockFactory Create(DistributedLockMultiplexer existingMultiplexer, DistributedLockRetryConfiguration retryConfiguration, ILoggerFactory loggerFactory = null)
         {
             var configuration = new DistributedLockConfiguration(
-                new ExistDistributedLockConnectionProvider(existingMultiplexer),
+                new ExistAbstractDistributedLockConnectionProvider(existingMultiplexer),
                 loggerFactory)
             {
                 RetryConfiguration = retryConfiguration

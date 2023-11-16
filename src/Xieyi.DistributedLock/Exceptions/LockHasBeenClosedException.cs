@@ -1,6 +1,6 @@
 ﻿namespace Xieyi.DistributedLock.Exceptions
 {
-    public class LockHasBeenClosedException : ApplicationException
+    internal class LockHasBeenClosedException : ApplicationException
     {
         public LockHasBeenClosedException(string message) : base(message)
         {

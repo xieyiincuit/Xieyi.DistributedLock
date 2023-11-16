@@ -3,7 +3,7 @@ using Xieyi.DistributedLock.LockLimit;
 
 namespace Xieyi.DistributedLock.Renew
 {
-    public class RenewEntry : RefCounted, IComparable
+    internal class RenewEntry : RefCounted, IComparable
     {
         private readonly LockBase _lockBase;
         private readonly int _threadId;

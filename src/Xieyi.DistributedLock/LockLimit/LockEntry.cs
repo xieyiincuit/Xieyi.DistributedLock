@@ -1,6 +1,6 @@
 ﻿namespace Xieyi.DistributedLock.LockLimit
 {
-    public class LockEntry : RefCounted
+    internal class LockEntry : RefCounted
     {
         private readonly object _locker = new object();
 

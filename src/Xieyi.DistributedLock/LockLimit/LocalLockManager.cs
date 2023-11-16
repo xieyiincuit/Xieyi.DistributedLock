@@ -3,7 +3,7 @@ using Xieyi.DistributedLock.Exceptions;
 
 namespace Xieyi.DistributedLock.LockLimit
 {
-    public class LocalLockManager
+    internal class LocalLockManager
     {
         private readonly ConcurrentDictionary<string, LockEntry> _lockEntries;
 

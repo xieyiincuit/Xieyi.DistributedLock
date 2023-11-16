@@ -1,6 +1,6 @@
 ﻿namespace Xieyi.DistributedLock.Renew
 {
-    public class RenewEntryPriorityBlockingQueue<T> where T : RenewEntry
+    internal class RenewEntryPriorityBlockingQueue<T> where T : RenewEntry
     {
         private int _capacity;
         private int _size;
